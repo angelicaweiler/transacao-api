@@ -21,14 +21,20 @@ public class EstatisticasService {
 
         log.info("Iniciada busca de estatísticas de transações pelo período de tempo " + intervaloBusca);
 
+        long start = System.currentTimeMillis();
+
         List<TransacaoRequestDTO> transacoes = transacaoService.buscarTransacoes(intervaloBusca);
 
-        if(transacoes.isEmpty()){
+        if (transacoes.isEmpty()) {
             return new EstatisticasResponseDTO(0L, 0.0, 0.0, 0.0, 0.0);
         }
 
         DoubleSummaryStatistics estatisticasTransacoes = transacoes.stream()
                 .mapToDouble(TransacaoRequestDTO::valor).summaryStatistics();
+
+        long finish = System.currentTimeMillis();
+        long tempoRequisicao = finish - start;
+        System.out.println("Tempo de requisição: " + tempoRequisicao + " milissegundos");
 
         log.info("Estatisticas retornadas com sucesso");
         return new EstatisticasResponseDTO(estatisticasTransacoes.getCount(),

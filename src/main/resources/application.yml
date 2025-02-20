@@ -1,0 +1,24 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics,swagger-ui"
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enable: true
+    app:
+      name: "Api de Transações"
+      version: 1.0.0
+      description: "Api responsável por gerenciar transações e estatísticas"
+    metrics:
+      tags:
+        application: api-transacoes
+  metrics:
+    enable:
+      all: true
+
+springdoc:
+  show-actuator: true

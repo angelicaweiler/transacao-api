@@ -27,7 +27,7 @@ public class EstatisticasController {
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     })
     public ResponseEntity<EstatisticasResponseDTO> buscarEstatisticas(
-            @RequestParam(value = "intervalorBusca", required = false, defaultValue = "60") Integer intervaloBusca){
+            @RequestParam(value = "intervaloBusca", required = false, defaultValue = "60") Integer intervaloBusca){
        return ResponseEntity.ok(
                estatisticasService.calcularEstatisticasTransacoes(intervaloBusca));
     }
